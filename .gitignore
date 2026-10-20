@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dataset — do NOT commit large data files
+data/raw/
+data/processed/
+
+# Model checkpoints
+artifacts/checkpoints/*.pth
+artifacts/checkpoints/*.pt
+!artifacts/checkpoints/resunetpp_best.pth
+
+# Training artifacts
+artifacts/results/
+artifacts/figures/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Secrets — NEVER commit
+.env
+*.key
+roboflow_key.txt
+
+# Logs
+*.log
+wandb/

@@ -1,0 +1,24 @@
+# Core ML
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Data & Image Processing
+numpy>=1.24.0
+Pillow>=9.5.0
+matplotlib>=3.7.0
+
+# Dataset
+roboflow>=1.1.0
+pycocotools>=2.0.6
+
+# Frontend
+streamlit>=1.28.0
+
+# Configuration
+PyYAML>=6.0
+
+# Testing
+pytest>=7.4.0
+
+# Utilities (used in Colab)
+tqdm>=4.65.0

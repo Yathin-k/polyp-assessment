@@ -1,0 +1,56 @@
+# ResUNet++ Training Configuration
+# Used by both the training script and Colab notebook
+
+model:
+  name: "resunetpp"
+  in_channels: 3
+  out_channels: 1
+  filters: [32, 64, 128, 256, 512]
+
+data:
+  # Dataset source
+  roboflow:
+    workspace: "teste-mhypc"
+    project: "kvasir-seg-gouny"
+    version: 4
+    export_format: "png-mask"  # or "coco"
+  
+  # Paths (relative to project root)
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  
+  # Preprocessing
+  img_size: [256, 256]
+  normalize_mean: [0.485, 0.456, 0.406]  # ImageNet
+  normalize_std: [0.229, 0.224, 0.225]
+  
+  # Splits
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+
+training:
+  batch_size: 8             # Fits typical Colab GPU (T4/V100)
+  epochs: 100
+  learning_rate: 0.0001     # 1e-4
+  weight_decay: 0.00001     # 1e-5
+  patience: 15              # Early stopping
+  scheduler: "reduce_on_plateau"  # or "cosine"
+  num_workers: 2
+  pin_memory: true
+
+loss:
+  type: "bce_dice"
+  alpha: 0.5    # BCE weight
+  beta: 0.5     # Dice weight
+
+inference:
+  threshold: 0.5
+  min_area_ratio: 0.001  # Minimum foreground ratio for detection
+  device: "auto"         # auto, cuda, or cpu
+
+paths:
+  checkpoint_dir: "artifacts/checkpoints"
+  results_dir: "artifacts/results"
+  figures_dir: "artifacts/figures"
